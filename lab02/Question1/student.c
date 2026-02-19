@@ -18,6 +18,7 @@
 //   s = "(]"        -> false
 //   s = "([)]"      -> false
 //   s = "{[]}"      -> true
+//   s = "{)[]}"
 //   s = ""          -> true   (empty string is valid)
 //
 // How to run tests (from the folder containing the Makefile):
@@ -53,7 +54,27 @@ bool isValid(const char *s) {
     //
     // Note:
     // - Input contains only bracket characters, per the prompt.
+    if (s == NULL) return false;
+    size_t len = strlen(s);
+    if(len % 2 != 0) return false;
+    if (len == 0) return true;
 
-    (void)s; // remove after implementing
-    return false; // placeholder
+    char stack[len];
+    int top = -1;
+
+    for(size_t i = 0; i < len; i++){
+        char c = s[i];
+        if(c=='('||c=='['||c=='{'){
+            stack[++top] = c;
+        }else{
+            if(top < 0) return false;
+            char open = stack[top--];
+            if ((c == ')' && open != '(') ||
+                (c == '}' && open != '{') ||
+                (c == ']' && open != '[')){
+                    return false;
+                }
+        }
+    }
+    return top == -1; // placeholder
 }
