@@ -13,6 +13,19 @@
 #include "student.h"
 
 bool hasCycle(struct ListNode *head) {
-    // TODO: implement
+    // TODO: implement      
+    // Hints (optional):
+    // - Use two pointers (slow and fast).
+    struct ListNode* slow = head;
+    struct ListNode* fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) {
+            return true; // Cycle detected
+        }
+    }
+    return false; // No cycle detected
 
 }
