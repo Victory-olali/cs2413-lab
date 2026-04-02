@@ -11,9 +11,26 @@
 
 
 int count_isolated(Graph* g) {
-    // TODO: implement
-    // return -1;
-   
+    int isolated_count = 0;
+    
+    // For each node, check if it has any edges
+    for (int i = 0; i < MAX_NODES; i++) {
+        int is_isolated = 1;
+        
+        // Check if the entire row is 0 (no edges connected to node i)
+        for (int j = 0; j < MAX_NODES; j++) {
+            if (g->adj[i][j] == 1) {
+                is_isolated = 0;
+                break;
+            }
+        }
+        
+        if (is_isolated) {
+            isolated_count++;
+        }
+    }
+    
+    return isolated_count;
 }
 
 
