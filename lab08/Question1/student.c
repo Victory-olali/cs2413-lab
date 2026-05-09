@@ -22,6 +22,36 @@ IMPORTANT:
 */
 
 char* longestCommonPrefix(char** strs, int strsSize) {
-      // TODO: implement
-
+    if (strsSize == 0) {
+        return "";
+    }
+    
+    int minLen = strlen(strs[0]);
+    for (int i = 1; i < strsSize; i++) {
+        int len = strlen(strs[i]);
+        if (len < minLen) {
+            minLen = len;
+        }
+    }
+    
+    int prefixLen = 0;
+    for (int col = 0; col < minLen; col++) {
+        char ch = strs[0][col];
+        int match = 1;
+        
+        for (int i = 1; i < strsSize; i++) {
+            if (strs[i][col] != ch) {
+                match = 0;
+                break;
+            }
+        }
+        
+        if (!match) {
+            break;
+        }
+        prefixLen++;
+    }
+    
+    strs[0][prefixLen] = '\0';
+    return strs[0];
 }

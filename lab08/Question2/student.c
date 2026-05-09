@@ -22,6 +22,29 @@ Note:
 */
 
 int strStr(char* haystack, char* needle) {
-    // TODO: implement
-
+    if (needle[0] == '\0') {
+        return 0;
+    }
+    
+    int haystackLen = strlen(haystack);
+    int needleLen = strlen(needle);
+    
+    if (needleLen > haystackLen) {
+        return -1;
+    }
+    
+    for (int i = 0; i <= haystackLen - needleLen; i++) {
+        int match = 1;
+        for (int j = 0; j < needleLen; j++) {
+            if (haystack[i + j] != needle[j]) {
+                match = 0;
+                break;
+            }
+        }
+        if (match) {
+            return i;
+        }
+    }
+    
+    return -1;
 }

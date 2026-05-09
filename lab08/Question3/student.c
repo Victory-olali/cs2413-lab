@@ -24,6 +24,15 @@ Hint:
 */
 
 bool isSubsequence(char* s, char* t) {
-    // TODO: implement
-
+    int sIdx = 0;
+    int tIdx = 0;
+    
+    while (s[sIdx] != '\0' && t[tIdx] != '\0') {
+        if (s[sIdx] == t[tIdx]) {
+            sIdx++;
+        }
+        tIdx++;
+    }
+    
+    return s[sIdx] == '\0';
 }
